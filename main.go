@@ -12,33 +12,33 @@ import (
 
 // Task представляет структуру задачи
 type Task struct {
-	ID         int       json:"id"             // Уникальный идентификатор задачи
-	Expression string    json:"expression"     // Выражение для вычисления
-	Status     string    json:"status"         // Статус задачи (pending, in_progress, completed)
-	Result     float64   json:"result,omitempty" // Результат вычисления
-	StartTime  time.Time json:"start_time,omitempty" // Время начала выполнения задачи
+	ID         int       `json:"id"`                   // Уникальный идентификатор задачи
+	Expression string    `json:"expression"`           // Выражение для вычисления
+	Status     string    `json:"status"`               // Статус задачи (pending, in_progress, completed)
+	Result     float64   `json:"result,omitempty"`     // Результат вычисления
+	StartTime  time.Time `json:"start_time,omitempty"` // Время начала выполнения задачи
 }
 
 // TaskRequest представляет структуру запроса на создание задачи
 type TaskRequest struct {
-	Expression string json:"expression" // Выражение для вычисления
+	Expression string `json:"expression"` // Выражение для вычисления
 }
 
 // TaskResponse представляет структуру ответа с ID задачи
 type TaskResponse struct {
-	ID int json:"id" // Уникальный идентификатор задачи
+	ID int `json:"id" ` // Уникальный идентификатор задачи
 }
 
 // Operation представляет структуру операции
 type Operation struct {
-	Operator string json:"operator" // Оператор выражения
-	Duration int    json:"duration" // Продолжительность выполнения операции (в секундах)
+	Operator string `json:"operator" ` // Оператор выражения
+	Duration int    `json:"duration"`  // Продолжительность выполнения операции (в секундах)
 }
 
 var (
-	tasks         []Task      // Список задач
-	tasksMutex    sync.Mutex  // Мьютекс для защиты списка задач
-	operations    = []Operation{ // Список доступных операций
+	tasks      []Task         // Список задач
+	tasksMutex sync.Mutex     // Мьютекс для защиты списка задач
+	operations = []Operation{ // Список доступных операций
 		{"+", 2}, {"-", 2}, {"*", 4}, {"/", 4},
 	}
 	taskIDCounter = 0 // Счетчик ID задач
